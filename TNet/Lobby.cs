@@ -46,6 +46,7 @@ internal static class Lobby
     {
         if (Clients.Count >= Variables.MaxClients)
         {
+            Logger.Warning("Unable to connect, limit reached.");
             tcpClient.Close();
             return;
         }
@@ -59,7 +60,7 @@ internal static class Lobby
             if (Clients.TryAdd(client.id, client)) break;
         }
 
-        Logger.Info($"New client connected.");
+        Logger.Info("New client connected.");
 
         byte[] buffer = new byte[MaxPacketLength];
         List<byte> received = [];
