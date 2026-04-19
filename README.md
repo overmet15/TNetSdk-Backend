@@ -5,6 +5,7 @@
 |----|---|------|
 |Call of Mini Zombies|`1`|Working|
 |Call of Mini Zombies 2|`1`|Working|
+|Call of Mini Dino Hunter|`2`|NOT WORKING|
 
 ## Arguments
 |Argument|Example Value|Description|
