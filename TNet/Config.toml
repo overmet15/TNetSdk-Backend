@@ -1,0 +1,23 @@
+﻿# Do NOT delete this file.
+# Do NOT delete any fields in this file.
+# This is the server config, you can change the values or add comments or even reorder them.
+# But deleting them will cause the server to fail.
+
+Port = 6750
+
+MaxRooms = 250
+MaxClients = 500
+
+MinRoomIndex = 1000
+MaxRoomIndex = 1000
+
+HeartbeatTimeout = 10
+
+EncryptionKey = "Triniti_Tlck"
+
+Gen = 0
+
+EnableMasterServer = false
+MasterAddress = "https://example.com/api/server/"
+MasterEncryptionKey = "ExampleKey"
+MasterAPIKey = "ExampleKey"

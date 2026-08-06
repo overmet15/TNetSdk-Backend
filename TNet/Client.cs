@@ -40,7 +40,7 @@ internal class Client
 
             heartValue += 1;
 
-            if (heartValue < Variables.HeartbeatTimeout) continue;
+            if (heartValue < Config.HeartbeatTimeout) continue;
 
             Disconnect(DisconnectCode.HeartbeatTimeout);
         }

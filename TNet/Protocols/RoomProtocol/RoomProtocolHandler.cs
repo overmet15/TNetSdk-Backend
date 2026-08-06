@@ -78,7 +78,7 @@ internal class RoomProtocolHandler : ProtocolHandler
         response.roomId = room.id;
         _ = client.Send(response.Pack());
 
-        if (Variables.Version != Version.Gen1) return;
+        if (Config.Gen != TNetGeneration.Gen0) return;
 
         RoomJoinResCmd joinResponse = new()
         {

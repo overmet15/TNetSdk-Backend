@@ -42,9 +42,17 @@ internal static class Lobby
         }
     }
 
-    static async Task HandleClient(TcpClient tcpClient)
+    private static async Task HandleClient(TcpClient tcpClient)
     {
-        if (Clients.Count >= Variables.MaxClients)
+        var endpoint = (IPEndPoint)tcpClient.Client.RemoteEndPoint!;
+
+        if (await Master.IpBanned(endpoint.Address.IsIPv4MappedToIPv6 ? endpoint.Address.MapToIPv4().ToString() : endpoint.Address.ToString()))
+        {
+            tcpClient.Close();
+            return;
+        }
+
+        if (Clients.Count > Config.MaxClients)
         {
             Logger.Warning("Unable to connect, limit reached.");
             tcpClient.Close();
@@ -60,7 +68,7 @@ internal static class Lobby
             if (Clients.TryAdd(client.id, client)) break;
         }
 
-        Logger.Info("New client connected.");
+        Logger.Info($"New client connected. '{((IPEndPoint)client.client.Client.RemoteEndPoint!).Address}'");
 
         byte[] buffer = new byte[MaxPacketLength];
         List<byte> received = [];
@@ -132,12 +140,12 @@ internal static class Lobby
         }
     }
 
-    static int GetLength(List<byte> data)
+    private static int GetLength(List<byte> data)
     {
         return ((data[0] << 8) | data[1]);
     }
 
-    static void HandlePacket(Client client, byte[] data)
+    private static void HandlePacket(Client client, byte[] data)
     {
         UnPacker unPacker = new();
         unPacker.SetData(data);

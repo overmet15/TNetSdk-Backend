@@ -1,5 +1,4 @@
-﻿using TNet.Helpers;
-using TNet.Protocols.SystemProtocol.ClientPackets;
+﻿using TNet.Protocols.SystemProtocol.ClientPackets;
 using TNet.Protocols.SystemProtocol.ServerPackets;
 
 namespace TNet.Protocols.SystemProtocol;
@@ -44,19 +43,6 @@ internal class SystemProtocolHandler : ProtocolHandler
         if (!cmd.Parse(unPacker)) throw new Exception("Unable to parse 'LoginCmd'.");
 
         LoginCmdRes response = new();
-
-        ushort id;
-
-        while (true)
-        {
-            id = RandomHelper.GetClientId();
-
-            if (Lobby.Clients.ContainsKey(id)) continue;
-
-            if (!Lobby.Clients.TryAdd(id, client)) continue;
-
-            break;
-        }
 
         client.loggedIn = true;
         client.nickname = cmd.nickname;

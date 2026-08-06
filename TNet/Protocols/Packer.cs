@@ -30,7 +30,7 @@ internal class Packer : BufferWriter
             compressType = 1;
         }
 
-        int packetLength = Lobby.HeaderSize +  data.Length;
+        int packetLength = Lobby.HeaderSize + data.Length;
 
         BufferWriter w = new();
         w.PushUInt16((ushort)packetLength);

@@ -6,7 +6,7 @@ internal class RandomHelper
 
     public static ushort GetRoomId()
     {
-        return (ushort)Random.Next(Variables.MinRoomValue, Variables.MaxRoomValue);
+        return (ushort)Random.Next(Config.MinRoomIndex, Config.MaxRoomIndex);
     }
 
     public static ushort GetClientId()

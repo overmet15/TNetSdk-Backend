@@ -8,11 +8,11 @@ internal static class EncrpytionHelper
 
     public static void Initialize()
     {
-        if (string.IsNullOrWhiteSpace(Variables.EncryptionKey)) Logger.Warning("Not using any encryption, key is not set.");
+        if (string.IsNullOrWhiteSpace(Config.EncryptionKey)) Logger.Warning("Not using any encryption, key is not set.");
         else
         {
             Logger.Info("Initializing encryption..");
-            BlowFish = new(Variables.EncryptionKey);
+            BlowFish = new(Config.EncryptionKey);
         }
     }
 

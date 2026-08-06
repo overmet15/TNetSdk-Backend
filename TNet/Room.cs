@@ -25,7 +25,7 @@ internal class Room
 
     public static Room? TryCreate(RoomCreateCmd cmd, Client client)
     {
-        if (Lobby.Rooms.Count >= Variables.MaxRooms) return null;
+        if (Lobby.Rooms.Count >= Config.MaxRooms) return null;
 
         Room result = new()
         {
@@ -120,7 +120,8 @@ internal class Room
             Client curClient = clients[i];
             int index = i;
 
-            Task.Run(async () => {
+            Task.Run(async () =>
+            {
                 var notify = new RoomJoinNotifyCmd
                 {
                     userId = curClient.id,
